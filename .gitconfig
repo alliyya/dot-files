@@ -1,0 +1,5 @@
+[user]
+	name = Alliyya_Mo
+	email = alliyya@mail.uoguelph.ca
+[core]
+	editor = subl -n -w
