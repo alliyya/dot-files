@@ -33,6 +33,7 @@ fi
 #ls aliases#
 ############
 alias ll='clear;ls -alF'
+alias lx='clear;ls -alFX'
 alias la='clear;ls -A'
 alias l='ls -CF'
 alias le='ls -CFR' #Recursive listings of files
@@ -188,6 +189,8 @@ alias sshgen='ssh alliyya@general.uoguelph.ca'
 alias sshstat='ssh alliyya@stats.uoguelph.ca'
 alias sshlong='ssh alliyya@longbottom.socs.uoguelph.ca'
 alias sshgrang='ssh alliyya@granger.socs.uoguelph.ca'
+alias sshgrang='ssh alliyya@granger.socs.uoguelph.ca'
+alias sshangel='ssh alliyya@cis2750.socs.uoguelph.ca'
 
 #####
 #hist function
