@@ -129,7 +129,8 @@ rightprompt() {
 }
 
 echo -e "Welcome Master"
-echo -e "\t\t\t\t\t\t\t\t\t$(date)"
+#echo -e "\t\t\t\t\t\t\t\t\t$(date)"
+echo -e "\t\t\t\t\t\t\t$(date)"
 #A simpler prompt
 #echo "You are awesome"
 #PS1="$(echo -e )$Green\$(tput sc; rightprompt; tput rc)$Red>"
@@ -145,4 +146,8 @@ echo -e "\t\t\t\t\t\t\t\t\t$(date)"
 # Mon Mar 07 @ 17:39:59
 # alliyyamo@alliyya-mo-pc:2951:6:~/stuff/class/currentCourses/os/cis3110$ 
 # PS1='\d @ \t\n\u@\h:\!:\#:\w$ '
+
 PS1='\h:\!:\#:\w$ '
+
+source /home/alliyya/.oh-my-git/prompt.sh
+

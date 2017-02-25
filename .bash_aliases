@@ -46,8 +46,7 @@ alias cls='clear'
 alias hg='history | grep' #allows searching through conmand history
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias wc='echo "Lines Words Bytes" && wc'
+# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 #alias tophis="(history | sed -Ee 's/^ *[0-9]+ *//' | tr  '|' '\n'; history | tr  '|' '\n' | grep -oE "sudo *(-u [^ ]+)? +[^ ]+" | grep -oE "[^ ]+$") | awk '{print $1}' | sed -e 's:./::' | sort | uniq -c | sort -rn | head -n10"
 #alias tophist='history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10'
 ###################################################
@@ -135,6 +134,7 @@ alias etower='cd ~/stuff/portfolio/reverseTowerDefenceGame/experimentalVersion/t
 alias rtower='cd ~/stuff/portfolio/reverseTowerDefenceGame/reOrganizedVersion/towerOffence'
 alias utower='cd ~/stuff/portfolio/reverseTowerDefenceGame/updatedVersion/towerOffence'
 
+# alias wc="echo 'Lines Words Bytes' && wc"
 ################################################
 #                             _           _    #
 #                            | |         | |   #
@@ -177,8 +177,8 @@ alias starwars='telnet towel.blinkenlights.nl '
 ##################
 #Quick references#
 ##################
-alias ascii='man ascii'
-alias units='man units'
+# alias ascii='man ascii'
+# alias units='man units'
 
 ##################
 #ssh thingss     #
@@ -193,13 +193,15 @@ alias sshgrang='ssh alliyya@granger.socs.uoguelph.ca'
 alias sshangel='ssh alliyya@cis2750.socs.uoguelph.ca'
 
 #####
-#hist function
+#hist functions
 ####
-# alias fixTime= 'dconf reset -f /com/canonical/indicator/datetime/ && pkill -f datetime'
 tophist() {
     history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
 }
 
+histtop(){
+	history|awk '{print $2}'|sort|uniq -c|sort -rn|head -30|awk '!max{max=$1;}{r="";i=s=100*$1/max;while(i-->0)r=r"#";printf "%50s %5d %s %s",$2,$1,r,"\n";}'
+}
 #!/usr/bin/expect -f
 testscp() {
     scp -r $1 alliyya@portkey.socs.uoguelph.ca:~$2
