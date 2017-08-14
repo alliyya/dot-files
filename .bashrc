@@ -128,7 +128,14 @@ rightprompt() {
     printf $(date) "\n";
 }
 
-echo -e "Welcome Master"
+echo "Fortune:"
+fortune -o -s
+sleep 1
+clear
+fortune -s
+# echo -e "Welcome Master"
+echo -e "\n\nWelcome Master"
+
 #echo -e "\t\t\t\t\t\t\t\t\t$(date)"
 echo -e "\t\t\t\t\t\t\t$(date)"
 #A simpler prompt

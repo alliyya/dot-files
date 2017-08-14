@@ -1,5 +1,7 @@
 [user]
-	name = Alliyya_Mo
-	email = alliyya@mail.uoguelph.ca
+	name = Alliyya Mo
+	email = alliyyamo.dev@gmail.com
 [core]
 	editor = subl -n -w
+[help]
+	autocorrect = 50
