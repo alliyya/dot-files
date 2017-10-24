@@ -32,6 +32,7 @@ fi
 ###############################################
 #ls aliases#
 ############
+
 alias ll='clear;ls -alF'
 alias lx='clear;ls -alFX'
 alias la='clear;ls -A'
@@ -81,6 +82,15 @@ up(){
     cd $d
 }
 
+skeleton() {
+    echo "#include <stdio.h>"
+    echo "int main(void)"
+    echo "{"
+    echo "    return 0;" 
+    echo "}"
+
+}
+
 ################
 # Common Paths #
 ################
@@ -106,14 +116,19 @@ alias other='cd ~/stuff/other'
 alias testing='cd ~/stuff/other/test'
 alias random='cd ~/stuff/other/random'
 alias work='cd ~/stuff/work'
+alias mission='cd ~/stuff/other/random/brother'
 alias ontology='cd ~/stuff/work/cwrc/ontology'
-alias docgen='cd ~/stuff/work/cwrc/docgen/specgenMarkII'
+alias tools='cd ~/stuff/work/cwrc/docgen/specgenMarkII'
+alias docgen='cd ~/stuff/work/cwrc/docgen//documentationGenerator'
 #################
 #Current Courses#
 #################
-alias angel='cd ~/stuff/class/currentCourses/angel/cis2750'
-alias phil='cd ~/stuff/class/currentCourses/phil/phil2110'
-alias os='cd ~/stuff/class/currentCourses/os/cis3110'
+    
+alias soft='cd ~/stuff/class/currentCourses/softDesign/cis3260'
+alias syst='cd ~/stuff/class/currentCourses/systAn/cis3750'
+alias calc='cd ~/stuff/class/currentCourses/calc/math2200'
+alias diffy='cd ~/stuff/class/currentCourses/diffies/math2270'
+alias oper='cd ~/stuff/class/currentCourses/operations/math3240'
 
 #################
 #Typical Folders#
@@ -128,6 +143,7 @@ alias labs='cd labs'
 ##################
 # most current project directory
 # alias cdd='cd ~/blah/blah'
+alias superteam3='cd ~/stuff/class/currentCourses/systAn/cis3750/superteam3'
 alias editaliases='subl ~/.bash_aliases'
 # experimentalVersion/  reOrganizedVersion/  updatedVersion/
 
@@ -170,6 +186,8 @@ alias fixwifi='sudo systemctl restart network-manager.service'
 # git aliases
 alias uncommit='git reset HEAD^'
 alias gst='git status -uno'
+alias gpl='git pull'
+alias gd='git diff'
 alias gch='git status -s | grep "??" -v'
 alias gmod='git status | grep "modified:"'
 
@@ -180,7 +198,7 @@ alias go='gvfs-open'
 alias tl='tldr'
 alias o='okular'
 alias ppt2pdf='unoconv -f pdf'
-
+# alias compile= 'gcc -Wall -std=c99'
 #############
 #Cool things#
 #############
@@ -192,9 +210,9 @@ alias starwars='telnet towel.blinkenlights.nl '
 alias ascii='man ascii'
 alias units='man units'
 
-##################
-#ssh thingss     #
-##################
+#############
+#ssh thingss#
+#############
 alias sshlinux='ssh alliyya@linux.socs.uoguelph.ca'
 alias sshport='ssh alliyya@portkey.socs.uoguelph.ca'
 alias sshgen='ssh alliyya@general.uoguelph.ca'
@@ -221,6 +239,10 @@ testscp() {
 }
 mkcd() {
     mkdir $1 && cd $1
+}
+compile() {
+    rm ./a.out
+    gcc $1 -Wall -std=c99 && ./a.out
 }
 
 printlines(){
