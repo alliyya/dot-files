@@ -7,7 +7,13 @@
 #   /_/    \_\_|_|\__,_|___/\___||___/   #
 #                                        #
 ##########################################
-# Aliases definitions.
+
+##############
+#Meta Aliases#
+##############
+alias editaliases='subl ~/.bash_aliases'
+alias resetbash='. ~/.bashrc'
+alias findaliases='alias | grep'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -21,18 +27,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-###############################################
-#    _             _ _                        #
-#   | |           | (_)                       #
-#   | |___    __ _| |_  __ _ ___  ___  ___    #
-#   | / __|  / _` | | |/ _` / __|/ _ \/ __|   #
-#   | \__ \ | (_| | | | (_| \__ \  __/\__ \   #
-#   |_|___/  \__,_|_|_|\__,_|___/\___||___/   #
-#                                             #
-###############################################
+############
 #ls aliases#
 ############
-
 alias ll='clear;ls -alF'
 alias lx='clear;ls -alFX'
 alias la='clear;ls -A'
@@ -41,26 +38,31 @@ alias le='ls -CFR' #Recursive listings of files
 alias lt='echo "-----Newest-----" && ls -t1 && echo "-----Oldest-----"'
 alias ltr='echo "-----Oldest-----" && ls -rt1 && echo "-----Newest-----"'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
 alias c='clear'
 alias cls='clear'
-alias hg='history | grep' #allows searching through conmand history
+
+#########################
+#history alias/functions#
+#########################
+alias hg='history | grep' #allows searching through command history
+
+tophist() {
+    history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
+}
+
+histtop(){
+    history|awk '{print $2}'|sort|uniq -c|sort -rn|head -30|awk '!max{max=$1;}{r="";i=s=100*$1/max;while(i-->0)r=r"#";printf "%50s %5d %s %s",$2,$1,r,"\n";}'
+}
+
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 # alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-#alias tophis="(history | sed -Ee 's/^ *[0-9]+ *//' | tr  '|' '\n'; history | tr  '|' '\n' | grep -oE "sudo *(-u [^ ]+)? +[^ ]+" | grep -oE "[^ ]+$") | awk '{print $1}' | sed -e 's:./::' | sort | uniq -c | sort -rn | head -n10"
-#alias tophist='history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10'
-###################################################
-#            _         _ _                        #
-#           | |       | (_)                       #
-#     ___ __| |   __ _| |_  __ _ ___  ___  ___    #
-#    / __/ _` |  / _` | | |/ _` / __|/ _ \/ __|   #
-#   | (_| (_| | | (_| | | | (_| \__ \  __/\__ \   #
-#    \___\__,_|  \__,_|_|_|\__,_|___/\___||___/   #
-#                                                 #
-###################################################
+
+############
 #cd aliases#
 ############
-
 ##################
 #Quick cd aliases#
 ##################
@@ -82,14 +84,10 @@ up(){
     cd $d
 }
 
-skeleton() {
-    echo "#include <stdio.h>"
-    echo "int main(void)"
-    echo "{"
-    echo "    return 0;" 
-    echo "}"
-
+mkcd() {
+    mkdir $1 && cd $1
 }
+
 
 ################
 # Common Paths #
@@ -110,7 +108,7 @@ alias pa='cd ~/stuff/pa'
 alias school='cd ~/stuff/class'
 alias class='cd ~/stuff/class/currentCourses'
 alias past='cd ~/stuff/class/pastCourses'
-alias ta='cd ~/stuff/ta'
+alias ta='cd ~/stuff/ta/cis1500/F17'
 alias readings='cd ~/stuff/readings'
 alias other='cd ~/stuff/other'
 alias testing='cd ~/stuff/other/test'
@@ -119,11 +117,11 @@ alias work='cd ~/stuff/work'
 alias mission='cd ~/stuff/other/random/brother'
 alias ontology='cd ~/stuff/work/cwrc/ontology'
 alias tools='cd ~/stuff/work/cwrc/docgen/specgenMarkII'
-alias docgen='cd ~/stuff/work/cwrc/docgen//documentationGenerator'
+alias docgen='cd ~/stuff/work/cwrc/docgen/documentationGenerator'
+
 #################
 #Current Courses#
 #################
-    
 alias soft='cd ~/stuff/class/currentCourses/softDesign/cis3260'
 alias syst='cd ~/stuff/class/currentCourses/systAn/cis3750'
 alias calc='cd ~/stuff/class/currentCourses/calc/math2200'
@@ -137,14 +135,11 @@ alias notes='cd notes'
 alias ass='cd assignments'
 alias labs='cd labs'
 
-
 ##################
 #Current projects#
 ##################
 # most current project directory
 # alias cdd='cd ~/blah/blah'
-alias superteam3='cd ~/stuff/class/currentCourses/systAn/cis3750/superteam3'
-alias editaliases='subl ~/.bash_aliases'
 # experimentalVersion/  reOrganizedVersion/  updatedVersion/
 
 alias ctower='cd ~/stuff/portfolio/reverseTowerDefenceGame/classVersion/towerOffence'
@@ -152,24 +147,17 @@ alias etower='cd ~/stuff/portfolio/reverseTowerDefenceGame/experimentalVersion/t
 alias rtower='cd ~/stuff/portfolio/reverseTowerDefenceGame/reOrganizedVersion/towerOffence'
 alias utower='cd ~/stuff/portfolio/reverseTowerDefenceGame/updatedVersion/towerOffence'
 
-alias count="echo 'Lines Words Bytes' && wc"
-################################################
-#                             _           _    #
-#                            | |         | |   #
-#     __ _ ___ ___  ___  _ __| |_ ___  __| |   #
-#    / _` / __/ __|/ _ \| '__| __/ _ \/ _` |   #
-#   | (_| \__ \__ \ (_) | |  | ||  __/ (_| |   #
-#    \__,_|___/___/\___/|_|   \__\___|\__,_|   #
-#              _ _                             #
-#             | (_)                            # 
-#         __ _| |_  __ _ ___  ___  ___         # 
-#        / _` | | |/ _` / __|/ _ \/ __|        # 
-#       | (_| | | | (_| \__ \  __/\__ \        # 
-#        \__,_|_|_|\__,_|___/\___||___/        # 
-#                                              #
-################################################
+##################
 #assorted aliases#
 ##################
+count () {
+    echo -ne "Lines:\t"  &&  wc -l < $1
+    echo -ne "Words:\t"  &&  wc -w < $1
+    echo -ne "Chars:\t"  &&  wc -m < $1
+    echo -ne "Bytes:\t"  &&  wc -c < $1
+    echo -ne "MaxLen:\t"  &&  wc -L < $1
+}
+# alias count="echo 'Lines Words Bytes' && wc"
 
 #######################################
 #Software updates/installation aliases#
@@ -181,11 +169,13 @@ alias aptinstall='sudo apt-get install'
 alias aremove='sudo apt-get autoremove'
 alias aclean='sudo apt-get autoclean'
 alias fixwifi='sudo systemctl restart network-manager.service'
+alias fixaudio='alsactl restore'
 
-
-# git aliases
+#############
+#git aliases#
+#############
 alias uncommit='git reset HEAD^'
-alias gst='git status -uno'
+alias gst='git status'
 alias gpl='git pull'
 alias gd='git diff'
 alias gch='git status -s | grep "??" -v'
@@ -198,7 +188,8 @@ alias go='gvfs-open'
 alias tl='tldr'
 alias o='okular'
 alias ppt2pdf='unoconv -f pdf'
-# alias compile= 'gcc -Wall -std=c99'
+alias compile='gcc -Wall -std=c99'
+alias rap='rapper'
 #############
 #Cool things#
 #############
@@ -222,25 +213,24 @@ alias sshgrang='ssh alliyya@granger.socs.uoguelph.ca'
 alias sshangel='ssh alliyya@cis2750.socs.uoguelph.ca'
 alias sshwebangel='ssh alliyya@2750web.socs.uoguelph.ca'
 alias sshserver='ssh -t alliyya@portkey.socs.uoguelph.ca "ssh alliyya@2750web.socs.uoguelph.ca"'
+alias sshcwrc='ssh ubuntu@sparql.cwrc.ca'
 
-#####
-#hist functions
-####
-tophist() {
-    history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
-}
 
-histtop(){
-	history|awk '{print $2}'|sort|uniq -c|sort -rn|head -30|awk '!max{max=$1;}{r="";i=s=100*$1/max;while(i-->0)r=r"#";printf "%50s %5d %s %s",$2,$1,r,"\n";}'
-}
 #!/usr/bin/expect -f
-testscp() {
-    scp -r $1 alliyya@portkey.socs.uoguelph.ca:~$2
+# testscp() {
+#     scp -r $1 alliyya@portkey.socs.uoguelph.ca:~$2
+# }
+
+skeleton() {
+    echo "#include <stdio.h>"
+    echo "int main(void)"
+    echo "{"
+    echo "    return 0;" 
+    echo "}"
+
 }
-mkcd() {
-    mkdir $1 && cd $1
-}
-compile() {
+
+comprun() {
     rm ./a.out
     gcc $1 -Wall -std=c99 && ./a.out
 }
@@ -251,7 +241,4 @@ printlines(){
     done
 }
 
-########################## 
-#AutoComplete for Aliases# 
-##########################
-# Stolen from http://stackoverflow.com/questions/342969/how-do-i-get-bash-completion-to-work-with-aliases
+
