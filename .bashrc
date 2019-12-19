@@ -144,8 +144,8 @@ echo -e "\t\t\t\t\t\t\t$(date)"
 #export PS1
 
 #A simpler prompt
-#source ~/.git-prompt.sh
-#PS1="$(echo -e '\u2387')$Green\$(__git_ps1) \n\$(tput sc; rightprompt; tput rc)$Red:: $Blue\W $Red:: $Black"
+# source ~/.git-prompt.sh
+PS1="$(echo -e '\u2387')$Green\$(__git_ps1) \n\$(tput sc; rightprompt; tput rc)$Red:: $Blue\W $Red:: $Black"
 
 ###########
 # Prompts #
@@ -154,7 +154,10 @@ echo -e "\t\t\t\t\t\t\t$(date)"
 # alliyyamo@alliyya-mo-pc:2951:6:~/stuff/class/currentCourses/os/cis3110$ 
 # PS1='\d @ \t\n\u@\h:\!:\#:\w$ '
 
-PS1='\h:\!:\#:\w$ '
+# PS1='\h:\!:\#:\w$ '
 
-source /home/alliyya/.oh-my-git/prompt.sh
+ . /usr/local/lib/python3.5/dist-packages/powerline/bindings/bash/powerline.sh
 
+
+# source /home/alliyya/.oh-my-git/prompt.sh
+export PATH=~/swift/swift-4.2.2-RELEASE-ubuntu16.04/usr/bin:$PATH

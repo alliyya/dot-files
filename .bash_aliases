@@ -8,6 +8,9 @@
 #                                        #
 ##########################################
 
+# TODO:
+# Test aliases for compatiblity on OS's, less dependent on builtins
+
 ##############
 #Meta Aliases#
 ##############
@@ -37,7 +40,7 @@ alias l='ls -CF'
 alias le='ls -CFR' #Recursive listings of files
 alias lt='echo "-----Newest-----" && ls -t1 && echo "-----Oldest-----"'
 alias ltr='echo "-----Oldest-----" && ls -rt1 && echo "-----Newest-----"'
-alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+# alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
 alias c='clear'
 alias cls='clear'
@@ -55,6 +58,10 @@ histtop(){
     history|awk '{print $2}'|sort|uniq -c|sort -rn|head -30|awk '!max{max=$1;}{r="";i=s=100*$1/max;while(i-->0)r=r"#";printf "%50s %5d %s %s",$2,$1,r,"\n";}'
 }
 
+
+# randomText() {
+#     info bash -o -|shuf -n$1|sed 's/  */ /g;s/^ //'|fmt -w 90
+# }
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -100,33 +107,46 @@ alias down='cd ~/Downloads'
 alias doc='cd ~/Documents'
 alias desk='cd ~/Desktop'
 alias stuff='cd ~/stuff'
-alias viv='cd ~/Desktop/viv'
+# alias viv='cd ~/Desktop/viv'
 # alias work='cd ~/Desktop/work'
 
-alias portfolio='cd ~/stuff/portfolio'
+# mes amis
+alias bhav='cd ~/stuff/other/random/bhav/'
+alias bro='cd ~/stuff/other/random/brother'
+alias tamara='cd ~/stuff/other/random/tamara/'
+alias viv='cd ~/stuff/other/random/viv/'
+
 alias pa='cd ~/stuff/pa'
+alias playground='cd ~/stuff/other/playground'
+
 alias school='cd ~/stuff/class'
 alias class='cd ~/stuff/class/currentCourses'
 alias past='cd ~/stuff/class/pastCourses'
-alias ta='cd ~/stuff/ta/cis1500/F17'
-alias readings='cd ~/stuff/readings'
+alias repo='cd ~/stuff/ta/cis1500/repo/cis1500_labs'
+alias ta='cd ~/stuff/ta/cis1500/F19'
+
 alias other='cd ~/stuff/other'
-alias testing='cd ~/stuff/other/test'
 alias random='cd ~/stuff/other/random'
+alias rtesting='cd ~/stuff/other/test'
+alias portfolio='cd ~/stuff/portfolio'
+alias aoc='cd ~/stuff/practice/adventofcode'
+
+alias readings='cd ~/stuff/readings'
+
+
 alias work='cd ~/stuff/work'
-alias mission='cd ~/stuff/other/random/brother'
 alias ontology='cd ~/stuff/work/cwrc/ontology'
+alias oscripts='cd ~/stuff/work/cwrc/ontology/scripts'
+alias tdata='cd ~/stuff/work/cwrc/testData'
+alias extraction='cd ~/stuff/work/cwrc/RDF-extraction'
 alias tools='cd ~/stuff/work/cwrc/docgen/specgenMarkII'
-alias docgen='cd ~/stuff/work/cwrc/docgen/documentationGenerator'
+alias docgen='cd ~/stuff/work/cwrc/docgen/specgenMarkII/documentationGenerator'
+alias gccode='cd ~/stuff/other/random/gcc'
 
 #################
 #Current Courses#
 #################
-alias soft='cd ~/stuff/class/currentCourses/softDesign/cis3260'
-alias syst='cd ~/stuff/class/currentCourses/systAn/cis3750'
-alias calc='cd ~/stuff/class/currentCourses/calc/math2200'
-alias diffy='cd ~/stuff/class/currentCourses/diffies/math2270'
-alias oper='cd ~/stuff/class/currentCourses/operations/math3240'
+#
 
 #################
 #Typical Folders#
@@ -140,7 +160,6 @@ alias labs='cd labs'
 ##################
 # most current project directory
 # alias cdd='cd ~/blah/blah'
-# experimentalVersion/  reOrganizedVersion/  updatedVersion/
 
 alias ctower='cd ~/stuff/portfolio/reverseTowerDefenceGame/classVersion/towerOffence'
 alias etower='cd ~/stuff/portfolio/reverseTowerDefenceGame/experimentalVersion/towerOffence'
@@ -157,7 +176,6 @@ count () {
     echo -ne "Bytes:\t"  &&  wc -c < $1
     echo -ne "MaxLen:\t"  &&  wc -L < $1
 }
-# alias count="echo 'Lines Words Bytes' && wc"
 
 #######################################
 #Software updates/installation aliases#
@@ -176,10 +194,13 @@ alias fixaudio='alsactl restore'
 #############
 alias uncommit='git reset HEAD^'
 alias gst='git status'
+alias gco='git checkout'
 alias gpl='git pull'
 alias gd='git diff'
+alias gcoma='git commit -am'
 alias gch='git status -s | grep "??" -v'
 alias gmod='git status | grep "modified:"'
+alias matchHead='git checkout @ -- '
 
 ########################
 #Applications shortcuts#
@@ -190,6 +211,9 @@ alias o='okular'
 alias ppt2pdf='unoconv -f pdf'
 alias compile='gcc -Wall -std=c99'
 alias rap='rapper'
+alias turtle='rapper -i turtle'
+alias android='~/Desktop/android-studio/bin/studio.sh'
+
 #############
 #Cool things#
 #############
@@ -205,28 +229,43 @@ alias units='man units'
 #ssh thingss#
 #############
 alias sshlinux='ssh alliyya@linux.socs.uoguelph.ca'
-alias sshport='ssh alliyya@portkey.socs.uoguelph.ca'
 alias sshgen='ssh alliyya@general.uoguelph.ca'
 alias sshstat='ssh alliyya@stats.uoguelph.ca'
+alias sshport='ssh alliyya@portkey.socs.uoguelph.ca'
 alias sshlong='ssh alliyya@longbottom.socs.uoguelph.ca'
 alias sshgrang='ssh alliyya@granger.socs.uoguelph.ca'
-alias sshangel='ssh alliyya@cis2750.socs.uoguelph.ca'
-alias sshwebangel='ssh alliyya@2750web.socs.uoguelph.ca'
-alias sshserver='ssh -t alliyya@portkey.socs.uoguelph.ca "ssh alliyya@2750web.socs.uoguelph.ca"'
+
 alias sshcwrc='ssh ubuntu@sparql.cwrc.ca'
+# alias sshta='ssh cis1500@linux.socs.uoguelph.ca'
+# alias sshgrading="ssh -t cis1500@portkey.socs.uoguelph.ca \"ssh -t cis1500@linux.socs.uoguelph.ca 'cd Fall18/grading/A1/ ; bash'\""
+# alias sshangel='ssh alliyya@cis2750.socs.uoguelph.ca'
+# alias sshwebangel='ssh alliyya@2750web.socs.uoguelph.ca'
+# alias sshserver='ssh -t alliyya@portkey.socs.uoguelph.ca "ssh alliyya@2750web.socs.uoguelph.ca"'
+# alias sshta='ssh -t cis1500@portkey.socs.uoguelph.ca "ssh cis1500@linux.socs.uoguelph.ca"'
 
+alias xclip='xclip -selection c'
 
-#!/usr/bin/expect -f
-# testscp() {
-#     scp -r $1 alliyya@portkey.socs.uoguelph.ca:~$2
-# }
 
 skeleton() {
-    echo "#include <stdio.h>"
-    echo "int main(void)"
-    echo "{"
-    echo "    return 0;" 
-    echo "}"
+    echo "#include <stdio.h>
+int main(void)
+{
+    return 0;
+}
+"
+
+}
+
+pyskeleton() {
+    echo "#!/usr/bin/python3
+
+def main():
+    pass
+
+
+if __name__ == '__main__':
+    main()
+    "
 
 }
 
@@ -241,4 +280,16 @@ printlines(){
     done
 }
 
+checkport() {
+	sudo lsof -i :$1
+}
+
+# TODO make these into functions
+# list out files, cat each file, confirm deletion
+
+# Delete files of a certain size
+# find . -name "*.txt" -size -352c -delete
+
+# Delete empty directories
+# find . -type d -empty -delete
 

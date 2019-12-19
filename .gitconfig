@@ -5,3 +5,7 @@
 	editor = subl -n -w
 [help]
 	autocorrect = 50
+[http]
+	sslverify = false
+[alias]
+	co = checkout
